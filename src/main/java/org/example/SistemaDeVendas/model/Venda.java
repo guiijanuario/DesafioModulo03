@@ -46,15 +46,8 @@ public class Venda {
         return totalVenda;
     }
 
-    public void setTotalVenda(double totalVenda) {
-        this.totalVenda = totalVenda;
-    }
-
     public LocalDate getHorarioDaVenda() {
         return horarioDaVenda;
     }
 
-    public void setHorarioDaVenda(LocalDate horarioDaVenda) {
-        this.horarioDaVenda = horarioDaVenda;
-    }
 }

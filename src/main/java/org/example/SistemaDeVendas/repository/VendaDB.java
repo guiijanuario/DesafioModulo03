@@ -17,13 +17,6 @@ public class VendaDB implements VendaRepository{
         this.vendas = new ArrayList<>();
     }
 
-    public List<Venda> getVendas() {
-        return vendas;
-    }
-
-    public void setVendas(List<Venda> vendas) {
-        this.vendas = vendas;
-    }
 
     @Override
     public void cadastrarVenda(Venda venda) {
@@ -36,10 +29,9 @@ public class VendaDB implements VendaRepository{
         for (Venda venda : vendas){
             if(venda.getHorarioDaVenda().equals(data)){
                 vendasEncontradas.add(venda);
-                return vendasEncontradas;
             }
         }
-        return null;
+        return vendasEncontradas;
     }
 
     @Override
@@ -59,11 +51,10 @@ public class VendaDB implements VendaRepository{
         for(Venda venda : vendas){
             if(venda.getVendedor().getEmail().equalsIgnoreCase(vendedorEmail)){
                 vendedorVendas.add(venda);
-                return vendedorVendas;
             }
 
         }
-        return null;
+        return vendedorVendas;
     }
 
     @Override

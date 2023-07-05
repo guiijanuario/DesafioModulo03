@@ -1,8 +1,5 @@
 package org.example.SistemaDeVendas.controller;
 
-import org.example.SistemaDeVendas.model.Cliente;
-import org.example.SistemaDeVendas.model.Produto;
-import org.example.SistemaDeVendas.model.Venda;
 import org.example.SistemaDeVendas.model.Vendedor;
 import org.example.SistemaDeVendas.service.VendedorServices;
 

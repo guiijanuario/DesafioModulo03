@@ -9,6 +9,7 @@ import org.example.SistemaDeVendas.service.ProdutoServices;
 import org.example.SistemaDeVendas.service.VendaServices;
 import org.example.SistemaDeVendas.service.VendedorServices;
 
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.List;
@@ -109,6 +110,8 @@ public class VendaController{
     }
 
     public void buscarVendaMenu() {
+
+
         try {
             int opcaoMenuListar;
             do {
@@ -130,18 +133,19 @@ public class VendaController{
                         String cpfCliente = new Scanner(System.in).nextLine();
 
                         try{
-                        List<Venda> compras = vendaServices.buscarVendaPeloCliente(cpfCliente);
+                            DecimalFormat formata = new DecimalFormat("R$ #,##0.00");
+                            List<Venda> compras = vendaServices.buscarVendaPeloCliente(cpfCliente);
 
-                        System.out.print("\n[-------------------------------------------]");
-                        System.out.print("\n Essas são as compras cadastradas neste CPF");
-                        System.out.print("\n[-------------------------------------------]\n");
+                            System.out.print("\n[-------------------------------------------]");
+                            System.out.print("\n Essas são as compras cadastradas neste CPF");
+                            System.out.print("\n[-------------------------------------------]\n");
 
                             for (Venda compra : compras) {
                                 System.out.println("[---------------------------------------------]");
                                 System.out.println("Nome do cliente: " + compra.getCliente().getNome());
                                 System.out.println("CPF do Cliente: " + compra.getCliente().getCpf());
                                 System.out.println("Produto que comprou: " + compra.getProduto().getNome());
-                                System.out.println("Valor total da venda: " + compra.getProduto().getPreco());
+                                System.out.println("Valor total da venda: " + formata.format(compra.getProduto().getPreco()));
                                 System.out.println("Vendedor que atendeu: " + compra.getVendedor().getNome());
                                 System.out.println("[---------------------------------------------]");
                             }
@@ -152,14 +156,36 @@ public class VendaController{
 
                         break;
                     case 2:
-                        System.out.print("\n[---------------------------------------]");
+                        System.out.print("\n[-----------------------------------]");
                         System.out.print("\n  Buscar venda pelo E-mail do Vendedor");
-                        System.out.print("\n[---------------------------------------]\n");
+                        System.out.print("\n[-----------------------------------]\n");
 
-                        System.out.print("Digite o E-mail do vendedor: ");
+                        System.out.print("Digite o E-mail do Vendedor: ");
                         String emailVendedor = new Scanner(System.in).nextLine();
 
-                        vendaServices.buscarVendaPeloVendedor(emailVendedor);
+                        try{
+                            DecimalFormat formata = new DecimalFormat("R$ #,##0.00");
+                            List<Venda> vendas = vendaServices.buscarVendaPeloVendedor(emailVendedor);
+
+                            System.out.print("\n[-------------------------------------------]");
+                            System.out.print("\n Essas são as vendas realizadas neste e-mail");
+                            System.out.print("\n[-------------------------------------------]\n");
+
+                            for (Venda venda : vendas) {
+                                System.out.println("[---------------------------------------------]");
+                                System.out.println("Nome do cliente: " + venda.getCliente().getNome());
+                                System.out.println("CPF do Cliente: " + venda.getCliente().getCpf());
+                                System.out.println("Produto que comprou: " + venda.getProduto().getNome());
+                                System.out.println("Valor total da venda: " + formata.format(venda.getProduto().getPreco()));
+                                System.out.println("Vendedor que atendeu: " + venda.getVendedor().getNome());
+                                System.out.println("[---------------------------------------------]");
+                            }
+
+                        } catch (Exception e) {
+                            System.out.println("Ocorreu um erro ao listar as venda desde vendedor: " + e.getMessage());
+                        }
+
+
                         break;
                     case 3:
                         System.out.print("\n[------------------------------------]");
@@ -170,9 +196,27 @@ public class VendaController{
                         String dataString = new Scanner(System.in).nextLine();
 
                         try{
+                            DecimalFormat formata = new DecimalFormat("R$ #,##0.00");
                             LocalDate dataBusca = LocalDate.parse(dataString);
 
-                            vendaServices.buscarVendaPelaData(dataBusca);
+                            List<Venda> vendas = vendaServices.buscarVendaPelaData(dataBusca);
+
+                            System.out.print("\n[------------------------------------------------]");
+                            System.out.print("\n Essas são as vendas realizadas na data: " + dataString);
+                            System.out.print("\n[------------------------------------------------]\n");
+
+                            for (Venda venda : vendas) {
+                                System.out.println("[---------------------------------------------]");
+                                System.out.println("Nome do cliente: " + venda.getCliente().getNome());
+                                System.out.println("CPF do Cliente: " + venda.getCliente().getCpf());
+                                System.out.println("Produto que comprou: " + venda.getProduto().getNome());
+                                System.out.println("Valor total da venda: " + formata.format(venda.getProduto().getPreco()));
+                                System.out.println("Vendedor que atendeu: " + venda.getVendedor().getNome());
+                                System.out.println("Data da compra: " + venda.getHorarioDaVenda());
+                                System.out.println("[---------------------------------------------]");
+                            }
+
+
                         } catch (DateTimeParseException e) {
                             System.out.print("\n[----------------------------------------------------------------------------]");
                             System.out.println("Erro: Data inválida. Certifique-se de usar o formato correto (yyyy-MM-dd).");
