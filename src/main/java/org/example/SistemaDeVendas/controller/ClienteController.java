@@ -50,40 +50,48 @@ public class ClienteController {
     }
 
     public void listarClientesMenu(){
-        List<Cliente> clientes = clienteService.listarClientes();
+        try{
+            List<Cliente> clientes = clienteService.listarClientes();
 
-        System.out.print("\n[---------------------------------]");
-        System.out.print("\n Esses são os clientes cadastrados");
-        System.out.print("\n[---------------------------------]\n");
+            System.out.print("\n[---------------------------------]");
+            System.out.print("\n Esses são os clientes cadastrados");
+            System.out.print("\n[---------------------------------]\n");
 
-        for (Cliente cliente : clientes) {
-            System.out.println("Nome completo: " + cliente.getNome());
-            System.out.println("E-mail: " + cliente.getEmail());
-            System.out.println("CPF: " + cliente.getCpf() + "\n");
-        }
+            for (Cliente cliente : clientes) {
+                System.out.println("Nome completo: " + cliente.getNome());
+                System.out.println("E-mail: " + cliente.getEmail());
+                System.out.println("CPF: " + cliente.getCpf() + "\n");
+            }
+        } catch (Exception e){
+                System.out.println("Ocorreu um erro ao buscar o cliente: " + e.getMessage());
+            }
     }
 
     public void buscarClienteMenu() {
+        try {
+            System.out.print("\n[---------------------------------]");
+            System.out.print("\n  Buscar o Cliente pelo CPF");
+            System.out.print("\n[---------------------------------]\n");
 
-        System.out.print("\n[---------------------------------]");
-        System.out.print("\n  Buscar o Cliente pelo CPF");
-        System.out.print("\n[---------------------------------]\n");
+            System.out.print("Digite o CPF do cliente: ");
+            String cpfCliente = new Scanner(System.in).nextLine();
 
-        System.out.print("Digite o CPF do cliente: ");
-        String cpfCliente = new Scanner(System.in).nextLine();
+            Cliente cliente = clienteService.buscarCliente(cpfCliente);
 
-        Cliente cliente = clienteService.buscarCliente(cpfCliente);
 
-        if (cliente != null) {
-            System.out.println("[------------ Cliente encontrado ------------]");
-            System.out.println("Nome do vendedor: " + cliente.getNome());
-            System.out.println("E-mail vendedor: " + cliente.getEmail());
-            System.out.println("CPF vendedor: " + cliente.getCpf());
-            System.out.println("[---------------------------------------------]");
-        } else {
-            System.out.println("[-------------------------------]");
-            System.out.println("Error: Cliente não encontrado.");
-            System.out.println("[-------------------------------]");
+            if (cliente != null) {
+                System.out.println("\n[------------ Cliente encontrado ------------]");
+                System.out.println("Nome do vendedor: " + cliente.getNome());
+                System.out.println("E-mail vendedor: " + cliente.getEmail());
+                System.out.println("CPF vendedor: " + cliente.getCpf());
+                System.out.println("[---------------------------------------------]");
+            } else {
+                System.out.println("\n[-------------------------------]");
+                System.out.println("Error: Cliente não encontrado.");
+                System.out.println("[-------------------------------]");
+            }
+         } catch (Exception e){
+            System.out.println("Ocorreu um erro ao listar os clientes: " + e.getMessage());
         }
     }
 }

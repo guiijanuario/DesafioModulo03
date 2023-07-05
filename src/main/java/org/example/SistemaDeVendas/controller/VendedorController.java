@@ -47,41 +47,50 @@ public class VendedorController {
     }
 
     public void listarVendedorMenu(){
-        List<Vendedor> vendedores = vendedorServices.listarVendedores();
+        try {
+            List<Vendedor> vendedores = vendedorServices.listarVendedores();
 
-        System.out.print("\n[---------------------------------]");
-        System.out.print("\n Esses são as vendas cadastradas");
-        System.out.print("\n[---------------------------------]\n");
+            System.out.print("\n[-------------------------------------]");
+            System.out.print("\n Esses são os vendedores cadastrados");
+            System.out.print("\n[-------------------------------------]\n");
 
-        for (Vendedor vendedor : vendedores) {
-            System.out.println("[---------------------------------------------]");
-            System.out.println("Nome do vendedor: " + vendedor.getNome());
-            System.out.println("E-mail vendedor: " + vendedor.getEmail());
-            System.out.println("CPF vendedor: " + vendedor.getCpf());
-            System.out.println("[---------------------------------------------]");
+            for (Vendedor vendedor : vendedores) {
+                System.out.println("[---------------------------------------------]");
+                System.out.println("Nome do vendedor: " + vendedor.getNome());
+                System.out.println("E-mail vendedor: " + vendedor.getEmail());
+                System.out.println("CPF vendedor: " + vendedor.getCpf());
+                System.out.println("[---------------------------------------------]");
+            }
+        } catch (Exception e){
+            System.out.println("Ocorreu um erro ao listar vendedor: " + e.getMessage());
         }
     }
 
     public void buscarVendedorMenu() {
-        System.out.print("\n[---------------------------------]");
-        System.out.print("\n  Buscar o vendedor pelo e-mail");
-        System.out.print("\n[---------------------------------]\n");
 
-        System.out.print("Digite o E-mail do Vendedor: ");
-        String emailVendedor = new Scanner(System.in).nextLine();
+        try{
+            System.out.print("\n[---------------------------------]");
+            System.out.print("\n  Buscar o vendedor pelo e-mail");
+            System.out.print("\n[---------------------------------]\n");
 
-        Vendedor vendedor = vendedorServices.buscarVendedor(emailVendedor);
+            System.out.print("Digite o E-mail do Vendedor: ");
+            String emailVendedor = new Scanner(System.in).nextLine();
 
-        if (vendedor != null) {
-            System.out.println("[------------ Vendedor encontrado ------------]");
-            System.out.println("Nome do vendedor: " + vendedor.getNome());
-            System.out.println("E-mail vendedor: " + vendedor.getEmail());
-            System.out.println("CPF vendedor: " + vendedor.getCpf());
-            System.out.println("[---------------------------------------------]");
-        } else {
-            System.out.println("[-------------------------------]");
-            System.out.println("Error: Vendedor não encontrado.");
-            System.out.println("[-------------------------------]");
+            Vendedor vendedor = vendedorServices.buscarVendedor(emailVendedor);
+
+            if (vendedor != null) {
+                System.out.println("[------------ Vendedor encontrado ------------]");
+                System.out.println("Nome do vendedor: " + vendedor.getNome());
+                System.out.println("E-mail vendedor: " + vendedor.getEmail());
+                System.out.println("CPF vendedor: " + vendedor.getCpf());
+                System.out.println("[---------------------------------------------]");
+            } else {
+                System.out.println("[-------------------------------]");
+                System.out.println("Error: Vendedor não encontrado.");
+                System.out.println("[-------------------------------]");
+            }
+        } catch (Exception e) {
+            System.out.println("Ocorreu um erro ao listar o vendedor: " + e.getMessage());
         }
     }
 }

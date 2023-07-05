@@ -26,7 +26,7 @@ public class VendaServices {
         return vendaRepository.listarVendas();
     }
 
-    public List<Venda> listarVendaPelaData(LocalDate data){
+    public List<Venda> buscarVendaPelaData(LocalDate data){
         return vendaRepository.buscarVendaPelaData(data);
     }
 

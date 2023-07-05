@@ -10,6 +10,6 @@ public interface VendaRepository {
     void cadastrarVenda(Venda venda);
     List<Venda> buscarVendaPelaData(LocalDate data);
     List<Venda> buscarVendaPeloCliente(String clienteCpf);
-    List<Venda> buscarVendaPeloVendedor(String vendedorCpf);
+    List<Venda> buscarVendaPeloVendedor(String vendedorEmail);
     List<Venda> listarVendas();
 }

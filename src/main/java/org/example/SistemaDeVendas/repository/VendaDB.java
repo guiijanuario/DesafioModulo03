@@ -52,10 +52,10 @@ public class VendaDB implements VendaRepository{
     }
 
     @Override
-    public List<Venda> buscarVendaPeloVendedor(String vendedorCpf) {
+    public List<Venda> buscarVendaPeloVendedor(String vendedorEmail) {
         List<Venda> vendedorVendas = new ArrayList<>();
         for(Venda venda : vendas){
-            if(venda.getCliente().getCpf().equalsIgnoreCase(vendedorCpf));
+            if(venda.getVendedor().getEmail().equalsIgnoreCase(vendedorEmail));
             vendedorVendas.add(venda);
         }
         return vendedorVendas;
