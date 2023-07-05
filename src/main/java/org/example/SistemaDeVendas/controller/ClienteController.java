@@ -49,7 +49,7 @@ public class ClienteController {
         }
     }
 
-    public void listarClientes(){
+    public void listarClientesMenu(){
         List<Cliente> clientes = clienteService.listarClientes();
 
         System.out.print("\n[---------------------------------]");
@@ -63,7 +63,11 @@ public class ClienteController {
         }
     }
 
-    public void buscarClientePorCPF() {
+    public void buscarClienteMenu() {
+
+        System.out.print("\n[---------------------------------]");
+        System.out.print("\n  Buscar o Cliente pelo CPF");
+        System.out.print("\n[---------------------------------]\n");
 
         System.out.print("Digite o CPF do cliente: ");
         String cpfCliente = new Scanner(System.in).nextLine();
@@ -71,10 +75,15 @@ public class ClienteController {
         Cliente cliente = clienteService.buscarCliente(cpfCliente);
 
         if (cliente != null) {
-            System.out.println("Sucess: Cliente encontrado:");
-            System.out.println(cliente);
+            System.out.println("[------------ Cliente encontrado ------------]");
+            System.out.println("Nome do vendedor: " + cliente.getNome());
+            System.out.println("E-mail vendedor: " + cliente.getEmail());
+            System.out.println("CPF vendedor: " + cliente.getCpf());
+            System.out.println("[---------------------------------------------]");
         } else {
+            System.out.println("[-------------------------------]");
             System.out.println("Error: Cliente não encontrado.");
+            System.out.println("[-------------------------------]");
         }
     }
 }

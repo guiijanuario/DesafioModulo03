@@ -37,7 +37,7 @@ public class Main {
         int opcaoMenuPrincipal;
         do {
             System.out.println("============ SISTEMA DE VENDAS ==========");
-            System.out.println("1. Área de Cadastrar");
+            System.out.println("1. Área de Cadastro");
             System.out.println("2. Área de Buscar");
             System.out.println("3. Área de Listar");
             System.out.println("4. Sair");
@@ -81,7 +81,7 @@ public class Main {
                 case 2:
                     int opcaoMenuBusca;
                     do {
-                        System.out.println("============ Área de busca ==========");
+                        System.out.println("============ Área de Busca ==========");
                         System.out.println("1. Buscar Cliente");
                         System.out.println("2. Buscar Vendedor");
                         System.out.println("3. Buscar Produto");
@@ -92,10 +92,10 @@ public class Main {
 
                         switch (opcaoMenuBusca) {
                             case 1:
-                                System.out.println("1. Buscar Cliente");
+                                clienteController.buscarClientePorCPF();
                                 break;
                             case 2:
-                                clienteController.listarClientes();
+                                vendedorController.buscarVendedorMenu();
                                 break;
                             case 3:
                                 clienteController.buscarClientePorCPF();
@@ -114,7 +114,7 @@ public class Main {
                 case 3:
                     int opcaoMenuListar;
                     do {
-                        System.out.println("============ Área de listar ==========");
+                        System.out.println("============ Área de listar os cadastros ==========");
                         System.out.println("1. Listar Cliente");
                         System.out.println("2. Listar Vendedor");
                         System.out.println("3. Listar Produto");
@@ -125,16 +125,16 @@ public class Main {
 
                         switch (opcaoMenuListar) {
                             case 1:
-                                System.out.println("1. Listar Cliente");
+                                clienteController.listarClientesMenu();
                                 break;
                             case 2:
-                                clienteController.listarClientes();
+                                vendedorController.listarVendedorMenu();
                                 break;
                             case 3:
-                                clienteController.buscarClientePorCPF();
+                                produtoController.listarProdutosMenu();
                                 break;
                             case 4:
-                                System.out.println("Saindo dosdasd programa...");
+                                vendaController.listarVendasMenu();
                                 break;
                             case 5:
                                 System.out.println("Saindo do programa...");
@@ -145,39 +145,6 @@ public class Main {
                     } while (opcaoMenuListar != 5);
                     break;
                 case 4:
-                    int opcaoMenuVenda;
-                    do {
-                        System.out.println("============ Área de listar ==========");
-                        System.out.println("1. Venda Cliente");
-                        System.out.println("2. Venda Vendedor");
-                        System.out.println("3. Venda Produto");
-                        System.out.println("4. Venda Venda");
-                        System.out.println("5. Sair");
-                        System.out.print("Digite a opção desejada: ");
-                        opcaoMenuVenda = new Scanner(System.in).nextInt();
-
-                        switch (opcaoMenuVenda) {
-                            case 1:
-                                System.out.println("1. Listar Cliente");
-                                break;
-                            case 2:
-                                clienteController.listarClientes();
-                                break;
-                            case 3:
-                                clienteController.buscarClientePorCPF();
-                                break;
-                            case 4:
-                                System.out.println("Saindo dosdasd programa...");
-                                break;
-                            case 5:
-                                System.out.println("Saindo do programa...");
-                                break;
-                            default:
-                                System.out.println("Opção inválida. Tente novamente.");
-                        }
-                    } while (opcaoMenuVenda != 5);
-                    break;
-                case 5:
                     System.out.println("Saindo do programa...");
                     break;
                 default:

@@ -43,7 +43,7 @@ public class ProdutoController {
         }
     }
 
-    public void listarProdutos(){
+    public void listarProdutosMenu(){
         List<Produto> produtos = produtoServices.listarProdutos();
 
         System.out.print("\n[---------------------------------]");

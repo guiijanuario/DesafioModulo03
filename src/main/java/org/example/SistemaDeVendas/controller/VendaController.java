@@ -66,18 +66,23 @@ public class VendaController{
         }
     }
 
-   /* public void listarVendasPorData(){
-        List<Venda> vendas = vendaServices.listarVendaPelaData();
+    public void listarVendasMenu(){
+        List<Venda> vendas = vendaServices.listarVendas();
 
         System.out.print("\n[---------------------------------]");
-        System.out.print("\n Esses são os clientes cadastrados");
+        System.out.print("\n Esses são as vendas cadastradas");
         System.out.print("\n[---------------------------------]\n");
 
-        for (Cliente cliente : clientes) {
-            System.out.println("Nome completo: " + cliente.getNome());
-            System.out.println("E-mail: " + cliente.getEmail());
-            System.out.println("CPF: " + cliente.getCpf() + "\n");
+        for (Venda venda : vendas) {
+            System.out.println("[---------------------------------------------]");
+            System.out.println("Nome do cliente: " + venda.getCliente().getNome());
+            System.out.println("CPF do Cliente: " + venda.getCliente().getCpf());
+            System.out.println("Produto que comprou: " + venda.getProduto().getNome());
+            System.out.println("Valor total da venda: " + venda.getProduto().getPreco());
+            System.out.println("Vendedor que atendeu: " + venda.getVendedor().getNome());
+            System.out.println("Comissão de 5% do vendedor: " +((venda.getTotalVenda() * 5) / 100) ) ;
+            System.out.println("[---------------------------------------------]");
         }
-    }*/
+    }
 
 }

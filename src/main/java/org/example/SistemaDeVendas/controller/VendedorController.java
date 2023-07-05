@@ -1,9 +1,12 @@
 package org.example.SistemaDeVendas.controller;
 
+import org.example.SistemaDeVendas.model.Cliente;
 import org.example.SistemaDeVendas.model.Produto;
+import org.example.SistemaDeVendas.model.Venda;
 import org.example.SistemaDeVendas.model.Vendedor;
 import org.example.SistemaDeVendas.service.VendedorServices;
 
+import java.util.List;
 import java.util.Scanner;
 
 //Classe para cuidar e interagir com o usuário
@@ -40,6 +43,45 @@ public class VendedorController {
             System.out.println("\n[--------------------------------------]");
             System.out.println("Error: Erro ao cadastrar vendedor: " + e.getMessage());
             System.out.println("[--------------------------------------]");
+        }
+    }
+
+    public void listarVendedorMenu(){
+        List<Vendedor> vendedores = vendedorServices.listarVendedores();
+
+        System.out.print("\n[---------------------------------]");
+        System.out.print("\n Esses são as vendas cadastradas");
+        System.out.print("\n[---------------------------------]\n");
+
+        for (Vendedor vendedor : vendedores) {
+            System.out.println("[---------------------------------------------]");
+            System.out.println("Nome do vendedor: " + vendedor.getNome());
+            System.out.println("E-mail vendedor: " + vendedor.getEmail());
+            System.out.println("CPF vendedor: " + vendedor.getCpf());
+            System.out.println("[---------------------------------------------]");
+        }
+    }
+
+    public void buscarVendedorMenu() {
+        System.out.print("\n[---------------------------------]");
+        System.out.print("\n  Buscar o vendedor pelo e-mail");
+        System.out.print("\n[---------------------------------]\n");
+
+        System.out.print("Digite o E-mail do Vendedor: ");
+        String emailVendedor = new Scanner(System.in).nextLine();
+
+        Vendedor vendedor = vendedorServices.buscarVendedor(emailVendedor);
+
+        if (vendedor != null) {
+            System.out.println("[------------ Vendedor encontrado ------------]");
+            System.out.println("Nome do vendedor: " + vendedor.getNome());
+            System.out.println("E-mail vendedor: " + vendedor.getEmail());
+            System.out.println("CPF vendedor: " + vendedor.getCpf());
+            System.out.println("[---------------------------------------------]");
+        } else {
+            System.out.println("[-------------------------------]");
+            System.out.println("Error: Vendedor não encontrado.");
+            System.out.println("[-------------------------------]");
         }
     }
 }
