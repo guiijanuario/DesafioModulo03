@@ -38,13 +38,4 @@ public class VendaServices {
         return vendaRepository.buscarVendaPeloVendedor(vendedorCpf);
     }
 
-    public double calcularTotalCompraCliente(String clienteCpf){
-        List<Venda> compras = vendaRepository.buscarVendaPeloCliente(clienteCpf);
-        double total = 0;
-        for(Venda compra : compras){
-            total += compra.getTotalVenda();
-        }
-        return total;
-    }
-
 }

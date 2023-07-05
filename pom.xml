@@ -27,5 +27,10 @@
             <version>4.5.1</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.arakhne.afc.core</groupId>
+            <artifactId>inputoutput</artifactId>
+            <version>17.0</version>
+        </dependency>
     </dependencies>
 </project>
