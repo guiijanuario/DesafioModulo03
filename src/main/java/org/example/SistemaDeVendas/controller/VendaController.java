@@ -101,7 +101,6 @@ public class VendaController{
                 System.out.println("Produto que comprou: " + venda.getProduto().getNome());
                 System.out.println("Valor total da venda: " + venda.getProduto().getPreco());
                 System.out.println("Vendedor que atendeu: " + venda.getVendedor().getNome());
-                System.out.println("Comissão de 5% do vendedor: " +((venda.getTotalVenda() * 5) / 100) ) ;
                 System.out.println("[---------------------------------------------]");
             }
         } catch (Exception e){
@@ -130,7 +129,26 @@ public class VendaController{
                         System.out.print("Digite o CPF do cliente: ");
                         String cpfCliente = new Scanner(System.in).nextLine();
 
-                        vendaServices.buscarVendaPeloCliente(cpfCliente);
+                        try{
+                        List<Venda> compras = vendaServices.buscarVendaPeloCliente(cpfCliente);
+
+                        System.out.print("\n[-------------------------------------------]");
+                        System.out.print("\n Essas são as compras cadastradas neste CPF");
+                        System.out.print("\n[-------------------------------------------]\n");
+
+                            for (Venda compra : compras) {
+                                System.out.println("[---------------------------------------------]");
+                                System.out.println("Nome do cliente: " + compra.getCliente().getNome());
+                                System.out.println("CPF do Cliente: " + compra.getCliente().getCpf());
+                                System.out.println("Produto que comprou: " + compra.getProduto().getNome());
+                                System.out.println("Valor total da venda: " + compra.getProduto().getPreco());
+                                System.out.println("Vendedor que atendeu: " + compra.getVendedor().getNome());
+                                System.out.println("[---------------------------------------------]");
+                            }
+
+                        } catch (Exception e) {
+                            System.out.println("Ocorreu um erro ao listar as compras desde cliente: " + e.getMessage());
+                        }
 
                         break;
                     case 2:

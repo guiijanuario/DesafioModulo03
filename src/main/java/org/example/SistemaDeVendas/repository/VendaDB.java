@@ -36,17 +36,19 @@ public class VendaDB implements VendaRepository{
         for (Venda venda : vendas){
             if(venda.getHorarioDaVenda().equals(data)){
                 vendasEncontradas.add(venda);
+                return vendasEncontradas;
             }
         }
-        return vendasEncontradas;
+        return null;
     }
 
     @Override
     public List<Venda> buscarVendaPeloCliente(String clienteCpf) {
         List<Venda> clientesVendas = new ArrayList<>();
         for(Venda venda : vendas){
-            if(venda.getCliente().getCpf().equalsIgnoreCase(clienteCpf));
-            clientesVendas.add(venda);
+            if(venda.getCliente().getCpf().equalsIgnoreCase(clienteCpf)){
+                clientesVendas.add(venda);
+            }
         }
         return clientesVendas;
     }
@@ -55,10 +57,13 @@ public class VendaDB implements VendaRepository{
     public List<Venda> buscarVendaPeloVendedor(String vendedorEmail) {
         List<Venda> vendedorVendas = new ArrayList<>();
         for(Venda venda : vendas){
-            if(venda.getVendedor().getEmail().equalsIgnoreCase(vendedorEmail));
-            vendedorVendas.add(venda);
+            if(venda.getVendedor().getEmail().equalsIgnoreCase(vendedorEmail)){
+                vendedorVendas.add(venda);
+                return vendedorVendas;
+            }
+
         }
-        return vendedorVendas;
+        return null;
     }
 
     @Override

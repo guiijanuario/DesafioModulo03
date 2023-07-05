@@ -23,7 +23,7 @@ public class VendedorController {
         System.out.println("      Cadastro de Vendedor");
         System.out.println("[---------------------------------]");
 
-        System.out.print("Digeite o nome do Vendedor: ");
+        System.out.print("Digite o nome do Vendedor: ");
         String nomeVendedor = new Scanner(System.in).nextLine();
 
         System.out.print("Digite o cpf do vendedor: ");
